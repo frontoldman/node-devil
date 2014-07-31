@@ -4,6 +4,7 @@
 
 
 module.exports = function(app){
+
     app.get('/',function(req,res,next){
         res.send('index');
     });
@@ -11,7 +12,6 @@ module.exports = function(app){
     app.get('/user_add',function(req,res,next){
         res.render('user_add');
     });
-
 
     app.post('/user_add',require('./controllers/user').add);
 

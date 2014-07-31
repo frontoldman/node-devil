@@ -17,7 +17,10 @@ exports.list = function(req,res,next){
 };
 
 exports.add = function(req,res,next){
-    //console.log(req.param('name'));
+
+
+
+
     User.newAndSave(req.param('name'),req.param('password'),req.param('email'),req.param('age'),function(err){
         if(err){
             return next(err);

@@ -6,11 +6,11 @@
 </head>
 <body>
 <ul>
-    <% for(var i = 0;i<userList.length;i++){ %>
+    <% for(var i = 0;i<userList.length ; i++){ %>
         <li>
             用户名：<%= userList[i].name %><br/>
             email:<%= userList[i].email %><br/>
-            年龄:<%= userList.age %><br/>
+            年龄:<%= userList[i].age %><br/>
         </li>
     <% } %>
 </ul>
