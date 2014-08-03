@@ -10,7 +10,9 @@ module.exports = function(app){
     });
 
     app.get('/user_add',function(req,res,next){
-        res.render('user_add');
+        res.render('user_add',{
+            errMsg:{}
+        });
     });
 
     app.post('/user_add',require('./controllers/user').add);

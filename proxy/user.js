@@ -12,6 +12,7 @@ exports.findAll = function(callback){
 
 //新增一个用户
 exports.newAndSave = function(name,password,email,age,callback){
+
     var user = new User();
     user.name = name;
     user.password = password;

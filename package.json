@@ -35,7 +35,8 @@
     "response-time": "^1.0.0",
     "utility": "0.0.x",
     "validator": "0.3.7",
-    "xss": "~0.0.9"
+    "xss": "~0.0.9",
+    "connect-flash": "^0.1.1"
   },
   "devDependencies": {
     "jscover": "*",
