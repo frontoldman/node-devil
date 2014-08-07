@@ -15,6 +15,7 @@
     "csurf": "^1.1.0",
     "data2xml": "0.8.0",
     "ejs-mate": "2.0.0",
+    "ejs":"*",
     "errorhandler": "^1.0.0",
     "eventproxy": "0.2.6",
     "express": "~4.1.1",

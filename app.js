@@ -15,10 +15,8 @@ var models = require('./models/');
 var app = express();
 
 //path是一个转换的路径的工具包，有一系列的方法
-app.set('views' , path.join(__dirname,'views'));    //设置试图路径
-app.set('view engine','html');  //设置模版引擎
-app.engine('html',require('ejs-mate')); //html映射到ejs,html后缀默认使用ejs渲染
-
+app.set('views' , path.join(__dirname,'views'));    //设置视图路径
+app.set('view engine', 'ejs');
 
 //表单参数解析
 app.use(bodyParser.json());

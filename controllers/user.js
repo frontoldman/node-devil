@@ -1,6 +1,7 @@
 /**
  * Created by zhangran on 14-7-13.
  */
+var crypto = require('crypto');
 
 var User = require('../proxy').User;
 
@@ -10,8 +11,9 @@ exports.list = function(req,res,next){
             console.log(err);
             return;
         }
-        res.render('user_list',{
-            userList:users
+        res.render('./user/user_list',{
+            userList:users,
+            title:'用户列表'
         })
     });
 };
@@ -52,13 +54,16 @@ exports.add = function(req,res,next){
     }
 
     if(errorFlag){
-        res.render('user_add',{
-            errMsg:errorMsg
+        res.render('./user/user_add',{
+            errMsg:errorMsg,
+            title:'添加用户'
         });
         return;
     }
 
+    var md5 = crypto.createHash('md5');
 
+    password = md5.update(password).digest('hex');
 
     User.newAndSave(name,password,email,age,function(err){
         if(err){

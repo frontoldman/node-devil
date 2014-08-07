@@ -10,8 +10,9 @@ module.exports = function(app){
     });
 
     app.get('/user_add',function(req,res,next){
-        res.render('user_add',{
-            errMsg:{}
+        res.render('user/user_add',{
+            errMsg:{},
+            title:'用户注册'
         });
     });
 
