@@ -1,7 +1,7 @@
 /**
  * Created by zhangran on 14-7-12.
  */
-
+var user = require('./controllers/user');
 
 module.exports = function(app){
 
@@ -21,16 +21,18 @@ module.exports = function(app){
         });
     });
 
-    app.post('/user_add',require('./controllers/user').add);
+    app.post('/user_add',user.add);
 
-    app.get('/user_list',require('./controllers/user').list);
+    app.get('/user_list',user.list);
 
     app.get('/user_login',function(req,res,next){
-       res.render('user/login',{
+       res.render('user/user_login',{
            errMsg:{},
            title:'登录'
        });
     });
+
+    app.post('/user_login',user.login);
     /*
      ==================================================
      关于用户的路由end

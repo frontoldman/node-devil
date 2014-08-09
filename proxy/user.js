@@ -20,3 +20,8 @@ exports.newAndSave = function(name,password,email,age,callback){
     user.age = age;
     user.save(callback);
 };
+
+
+exports.findOne = function(userObj,callback){
+    User.findOne(userObj,callback);
+}

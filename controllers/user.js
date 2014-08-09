@@ -72,3 +72,15 @@ exports.add = function(req,res,next){
         res.redirect('./user_list');
     });
 };
+
+exports.login = function(req,res,next){
+    var name = req.param('name'),
+        password = req.param('password');
+
+    var md5 = crypto.createHash('md5');
+    password = md5.update(password).digest('hex');
+
+    User.findOne({name:name,password:password},function(err,user){
+        res.send('查询成功！！！');
+    });
+}
