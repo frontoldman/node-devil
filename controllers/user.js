@@ -86,9 +86,11 @@ exports.login = function(req,res,next){
             return;
         }
 
-        res.cookie('name',user.name,{ expires: new Date(Date.now() + 900000)});
-        res.cookie('password',user.password,{ expires: new Date(Date.now() + 900000)});
+        var time = 1000*60*60*24;
+
+        res.cookie('name',user.name,{ expires: new Date(Date.now() + time)});
+        res.cookie('password',user.password,{ expires: new Date(Date.now() + time)});
 
         res.redirect('/');
     });
-}
+};
