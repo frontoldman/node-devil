@@ -6,7 +6,10 @@ var user = require('./controllers/user');
 module.exports = function(app){
 
     app.get('/',function(req,res,next){
-        res.send('index');
+        res.render('index',{
+            title:'首页',
+            name:req.cookies.name
+        })
     });
 
     /*

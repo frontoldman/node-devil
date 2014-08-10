@@ -81,6 +81,14 @@ exports.login = function(req,res,next){
     password = md5.update(password).digest('hex');
 
     User.findOne({name:name,password:password},function(err,user){
-        res.send('查询成功！！！');
+        if(err){
+            res.redirect('/login');
+            return;
+        }
+
+        res.cookie('name',user.name,{ expires: new Date(Date.now() + 900000)});
+        res.cookie('password',user.password,{ expires: new Date(Date.now() + 900000)});
+
+        res.redirect('/');
     });
 }

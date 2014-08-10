@@ -3,7 +3,9 @@
  */
 var config = {
     port:7777,
-    db:'mongodb://127.0.0.1/dbtest'
+    db:'mongodb://127.0.0.1/dbtest',
+    db_name: 'dbtest',
+    session_secret:'zr'
 };
 
 module.exports = config;

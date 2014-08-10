@@ -4,7 +4,9 @@
 
 var express = require('express');
 var path = require('path');
+var session = require('express-session');
 var bodyParser = require('body-parser');
+var MongoStore = require('connect-mongo')(session);
 var Loader = require('Loader');
 
 
@@ -22,6 +24,17 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:true
+}));
+
+app.use(require('cookie-parser')(config.session_secret));
+app.use(session({
+    secret: config.session_secret,
+    key: 'sid',
+    store: new MongoStore({
+        db: config.db_name
+    }),
+    resave: true,
+    saveUninitialized: true
 }));
 
 //静态文件路由
