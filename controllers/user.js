@@ -88,8 +88,11 @@ exports.login = function(req,res,next){
 
         var time = 1000*60*60*24;
 
+        res.cookie('id',user.id,{ expires: new Date(Date.now() + time)});
         res.cookie('name',user.name,{ expires: new Date(Date.now() + time)});
         res.cookie('password',user.password,{ expires: new Date(Date.now() + time)});
+//        req.session.user = user;
+//        res.locals.name = user.name;
 
         res.redirect('/');
     });

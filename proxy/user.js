@@ -24,4 +24,8 @@ exports.newAndSave = function(name,password,email,age,callback){
 
 exports.findOne = function(userObj,callback){
     User.findOne(userObj,callback);
-}
+};
+
+exports.findById = function(id,callback){
+    User.findOne({_id:id},callback);
+};
