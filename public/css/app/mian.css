@@ -1,3 +1,9 @@
 .nav-top-margin{
     margin-top: 70px;
 }
+.user-name{
+    color: #fff;
+    margin-top: 10px;
+    float:left;
+    margin-right: 10px;
+}

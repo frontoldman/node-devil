@@ -5,11 +5,18 @@
 var models = require('../models');
 var User = models.User;
 
-exports.validateLogin = function(req,res,next){
+exports.authChecker = function(req,res,next){
+
+    if(req.session.user){
+        res.locals.name = req.session.user.name;
+        next();
+        return;
+    }
 
     var id = req.cookies.id;
 
     if(!id){
+
         res.redirect('./user_login');   //重定向循环
         return;
     }
@@ -24,6 +31,5 @@ exports.validateLogin = function(req,res,next){
         res.locals.name = user.name;
         next();
     });
-
 
 }

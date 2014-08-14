@@ -13,7 +13,6 @@ var Loader = require('Loader');
 var config = require('./config');
 var routes = require('./routes');
 var models = require('./models/');
-var middlewear = require('./middlewear');
 
 var app = express();
 
@@ -37,9 +36,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-
-app.use(middlewear.validateLogin);
-
 //静态文件路由
 app.use(express.static(path.join(__dirname,'/public')));
 
@@ -49,6 +45,5 @@ app.listen(config.port,function(){
     console.log('Your app is listening on %d in %s mode!', config.port , '' );
 });
 
-app.set('age','19');
 
 module.exports = app;

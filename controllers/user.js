@@ -74,6 +74,7 @@ exports.add = function(req,res,next){
 };
 
 exports.login = function(req,res,next){
+    //res.locals.name = null;
     var name = req.param('name'),
         password = req.param('password');
 
@@ -89,11 +90,17 @@ exports.login = function(req,res,next){
         var time = 1000*60*60*24;
 
         res.cookie('id',user.id,{ expires: new Date(Date.now() + time)});
-        res.cookie('name',user.name,{ expires: new Date(Date.now() + time)});
-        res.cookie('password',user.password,{ expires: new Date(Date.now() + time)});
+       // res.cookie('name',user.name,{ expires: new Date(Date.now() + time)});
+       // res.cookie('password',user.password,{ expires: new Date(Date.now() + time)});
 //        req.session.user = user;
 //        res.locals.name = user.name;
 
         res.redirect('/');
     });
 };
+
+exports.loginOut = function(req,res,next){
+    req.session.user = null;
+    res.cookie('id','',{expires:0});
+    res.redirect('./user_login');
+}
