@@ -14,7 +14,11 @@ mongoose.connect(config.db, function(err){
 });
 
 require('./user');
+require('./article');
 
 exports.User = mongoose.model('User');
+exports.Article = mongoose.model('Article');
+
+
 
 

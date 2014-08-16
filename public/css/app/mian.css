@@ -1,9 +1,12 @@
 .nav-top-margin{
     margin-top: 70px;
 }
+.non-break{
+    white-space: nowrap;
+}
 .user-name{
     color: #fff;
     margin-top: 10px;
-    float:left;
+    display: inline-block;
     margin-right: 10px;
 }

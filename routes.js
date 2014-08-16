@@ -2,16 +2,14 @@
  * Created by zhangran on 14-7-12.
  */
 var user = require('./controllers/user');
+var article = require('./controllers/article');
+var index = require('./controllers/index');
 var middlewear = require('./middlewear/index');
 var authChecker = middlewear.authChecker;
 
 module.exports = function(app){
 
-    app.get('/',authChecker,function(req,res,next){
-        res.render('index',{
-            title:'首页'
-        });
-    });
+    app.get('/',authChecker,index.index);
 
     /*
     ==================================================
@@ -46,6 +44,26 @@ module.exports = function(app){
      关于用户的路由end
      ==================================================
      */
+
+    /*
+     ==================================================
+     关于用户的路由start
+     ==================================================
+    */
+    app.get('/article_add',authChecker,function(req,res,next){
+        res.render('article/article_add',{
+            title:'文章发表'
+        });
+    });
+
+    app.post('/article_add',authChecker,article.add);
+
+
+    /*
+     ==================================================
+     关于用户的路由end
+     ==================================================
+    */
 
 
 
