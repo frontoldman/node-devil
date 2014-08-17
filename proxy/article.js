@@ -10,6 +10,10 @@ exports.findAll = function(callback){
     Article.find(callback);
 };
 
+exports.findOne = function(articleObj,callback){
+    Article.find(articleObj,callback);
+};
+
 exports.add = function(title,content,userId,callback){
 
     var article = new Article();
@@ -23,3 +27,13 @@ exports.add = function(title,content,userId,callback){
     article.save(callback);
 
 };
+
+exports.update = function(conditions, update, options, callback){
+
+    if(typeof options === 'function'){
+        callback = options;
+        options = {};
+    }
+
+    Article.update(conditions, update, options, callback);
+}

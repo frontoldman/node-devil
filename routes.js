@@ -58,6 +58,7 @@ module.exports = function(app){
 
     app.post('/article_add',authChecker,article.add);
 
+    app.get('/article/:id',authChecker,article.findOne);
 
     /*
      ==================================================

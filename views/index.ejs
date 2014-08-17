@@ -5,7 +5,7 @@
         <ul>
         <%for(var i = 0;i<articleList.length;i++){%>
             <li>
-                <h3><%=articleList[i].title%></h3>
+                <h3><a href="/article/<%=articleList[i]._id%>"><%=articleList[i].title%></a></h3>
                 <p><%=articleList[i].content%></p>
                 <p>发表时间：<%=articleList[i].postTime.getTime()%></p>
             </li>
