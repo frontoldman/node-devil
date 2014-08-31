@@ -12,6 +12,8 @@ exports.add = function(req,res,next){
     var content = req.param('content');
     var userId = req.session.user._id;
 
+
+
     Article.add(title,content,userId,function(err,article){
 
         if(err){

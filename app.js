@@ -6,13 +6,11 @@ var express = require('express');
 var path = require('path');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var MongoStore = require('connect-mongo')(session);
-var Loader = require('Loader');
-
 
 var config = require('./config');
 var routes = require('./routes');
-var models = require('./models/');
 
 var app = express();
 
@@ -25,6 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:true
 }));
+app.use(multer({dest:config.upload_path}));
 
 app.use(require('cookie-parser')(config.session_secret));
 app.use(session({
@@ -36,8 +35,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
 //静态文件路由
 app.use(express.static(path.join(__dirname,'/public')));
+app.use(express.static(path.join(__dirname,config.upload_path)));
 
 routes(app);
 

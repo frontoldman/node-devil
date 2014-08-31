@@ -11,11 +11,12 @@ exports.findAll = function(callback){
 };
 
 //新增一个用户
-exports.newAndSave = function(name,password,email,age,callback){
+exports.newAndSave = function(name,password,pic,email,age,callback){
 
     var user = new User();
     user.name = name;
     user.password = password;
+    user.pic = pic;
     user.email = email;
     user.age = age;
     user.save(callback);

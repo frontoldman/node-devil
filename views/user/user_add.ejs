@@ -1,7 +1,8 @@
 <%- include ../header %>
 
     <div class="container theme-showcase nav-top-margin" role="main">
-        <form method="post" role="form" class="form-horizontal" action="./user_add">
+        <form method="post" role="form" class="form-horizontal" action="./user_add" enctype="multipart/form-data">
+
             <div class="form-group <% if(errMsg.name){ %>  has-error  <%}else{%>  <% } %>">
                 <label class="col-sm-2 control-label">用户名：</label>
                 <div class="col-sm-4">
@@ -9,6 +10,7 @@
                 </div>
                 <span class="help-block"><%= errMsg.name||'' %></span>
             </div>
+
             <div class="form-group <% if(errMsg.password){ %>  has-error  <%}%>">
                 <label class="col-sm-2 control-label">密 码：</label>
                 <div class="col-sm-4">
@@ -16,10 +18,18 @@
                 </div>
                 <span class="help-block"><%= errMsg.password||'' %></span>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 control-label">重复密码：</label>
                 <div class="col-sm-4">
                     <input type="password" class="form-control" name="password-repeat"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">头像：</label>
+                <div class="col-sm-4">
+                    <input type="file" class="form-control" name="head-picture"/>
                 </div>
             </div>
 

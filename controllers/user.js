@@ -23,8 +23,14 @@ exports.add = function(req,res,next){
     var name = req.param('name'),
         password = req.param('password'),
         passwordRepeat = req.param('password-repeat'),
-        email = req.param('email')
+        email = req.param('email'),
         age = req.param('age');
+
+    console.log(req.files['head-picture']);
+    //console.log(typeof req.file('head-picture'));
+
+    var file = req.files['head-picture'];
+    var pic = file ? file.name : '';
 
     var errorMsg = {};
     var errorFlag = false;
@@ -43,21 +49,24 @@ exports.add = function(req,res,next){
         errorFlag = true;
     }
 
-    if(email.length && !/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(email)){
+    if(email && !/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(email)){
         errorMsg.email = '邮箱格式不正确';
         errorFlag = true;
     }
 
-    if(age.length && isNaN(age)){
+    if(age && isNaN(age)){
         errorMsg.age = '年龄必须是数字';
         errorFlag = true;
     }
 
     if(errorFlag){
         res.render('./user/user_add',{
+            name:null,
             errMsg:errorMsg,
             title:'添加用户'
         });
+
+        //res.send('hi')
         return;
     }
 
@@ -65,7 +74,7 @@ exports.add = function(req,res,next){
 
     password = md5.update(password).digest('hex');
 
-    User.newAndSave(name,password,email,age,function(err){
+    User.newAndSave(name,password,pic,email,age,function(err){
         if(err){
             return next(err);
         }
