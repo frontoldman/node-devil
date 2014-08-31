@@ -6,8 +6,11 @@ var article = require('./controllers/article');
 var index = require('./controllers/index');
 var middlewear = require('./middlewear/index');
 var authChecker = middlewear.authChecker;
+var addUser = middlewear.addUser;
 
 module.exports = function(app){
+
+
 
     app.get('/',authChecker,index.index);
 
@@ -60,12 +63,25 @@ module.exports = function(app){
 
     app.get('/article/:id',authChecker,article.findOne);
 
+
+
     /*
      ==================================================
      关于用户的路由end
      ==================================================
     */
 
+    app.get('/404',addUser,function(req,res){
 
+        res.render('404',{
+            title:'404页面',
+            url:req.param('url')
+        });
+    });
+
+    app.use(function(req,res){
+        //res.locals.url = req.baseUrl;
+        res.redirect('/404?url='+ req.originalUrl);
+    });
 
 };

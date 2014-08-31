@@ -1,14 +1,23 @@
 <%- include ../header %>
 
-<ul class="nav-top-margin">
-    <% for(var i = 0;i<userList.length ; i++){ %>
-        <li>
-            用户名：<%= userList[i].name %><br/>
-            email:<%= userList[i].email %><br/>
-            年龄:<%= userList[i].age %><br/>
-            <img src="<%= userList[i].pic %>"/>
-        </li>
-    <% } %>
-</ul>
+
+<div class="container theme-showcase nav-top-margin" role="main">
+    <div class="row">
+        <div class="col-md-7 center-side">
+            <ul>
+                <% for(var i = 0;i<userList.length ; i++){ %>
+                    <li>
+                        用户名： <img class="head-pic" src="<%= userList[i].pic %>"/>
+                        <%= userList[i].name %><br/>
+                        email:<%= userList[i].email %><br/>
+                        年龄:<%= userList[i].age %><br/>
+
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+        <%- include ../side_right %>
+    </div>
+</div>
 
 <%- include ../footer %>

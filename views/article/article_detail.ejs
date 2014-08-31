@@ -1,13 +1,17 @@
 <%- include ../header %>
 
 <div class="container theme-showcase nav-top-margin">
-    <h1><%=article.title%></h1>
-    <div class="text-right">作者：<%=user%> 发表时间：<%=article.postTime.getFullYear()%> -
-        <%=article.postTime.getMonth()+1%> - <%=article.postTime.getDate()%>
-        &nbsp;&nbsp;阅读次数：<%=article.visitTimes%>
+    <div class="row">
+        <div class="col-md-7 center-side">
+            <h1><%=article.title%></h1>
+            <div class="text-right">作者：<img class="head-pic" src="/<%=user.pic%>"/><%=user.name%> 发表时间：<%=article.postTime.getFullYear()%> -
+                <%=article.postTime.getMonth()+1%> - <%=article.postTime.getDate()%>
+                &nbsp;&nbsp;阅读次数：<%=article.visitTimes%>
+            </div>
+            <p class="article-content text-info"><%- article.content%></p>
+        </div>
+        <%- include ../side_right %>
     </div>
-    <p class="article-content text-info"><%=article.content%></p>
-
 </div>
 
 

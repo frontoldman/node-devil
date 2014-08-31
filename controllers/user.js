@@ -26,8 +26,6 @@ exports.add = function(req,res,next){
         email = req.param('email'),
         age = req.param('age');
 
-    console.log(req.files['head-picture']);
-    //console.log(typeof req.file('head-picture'));
 
     var file = req.files['head-picture'];
     var pic = file ? file.name : '';
@@ -74,12 +72,34 @@ exports.add = function(req,res,next){
 
     password = md5.update(password).digest('hex');
 
-    User.newAndSave(name,password,pic,email,age,function(err){
-        if(err){
-            return next(err);
+    User.findOne({name:name},function(err,user){
+        if(!user){
+            newAndSave();
+        }else{
+            res.render('./user/user_add',{
+                name:null,
+                errMsg:{
+                    name:'用户名重复'
+                },
+                title:'添加用户'
+            });
         }
-        res.redirect('./user_list');
     });
+
+    function newAndSave(){
+        User.newAndSave(name,password,pic,email,age,function(err,user){
+            if(err){
+                return next(err);
+            }
+
+            var time = 1000*60*60*24;
+            res.cookie('id',user.id,{ expires: new Date(Date.now() + time)});
+
+            res.redirect('./user_list');
+        });
+    }
+
+
 };
 
 exports.login = function(req,res,next){
@@ -99,10 +119,6 @@ exports.login = function(req,res,next){
         var time = 1000*60*60*24;
 
         res.cookie('id',user.id,{ expires: new Date(Date.now() + time)});
-       // res.cookie('name',user.name,{ expires: new Date(Date.now() + time)});
-       // res.cookie('password',user.password,{ expires: new Date(Date.now() + time)});
-//        req.session.user = user;
-//        res.locals.name = user.name;
 
         res.redirect('/');
     });

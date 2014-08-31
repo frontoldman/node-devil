@@ -10,3 +10,23 @@
     display: inline-block;
     margin-right: 10px;
 }
+.center-side{
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.head-pic{
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ededed;
+    padding: 2px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+.right-side{
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

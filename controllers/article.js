@@ -2,6 +2,7 @@
  * Created by zhangran on 14-8-16.
  */
 var EventProxy = require('eventProxy');
+var markdown = require('markdown').markdown;
 
 var Article = require('../proxy').Article;
 var User = require('../proxy').User;
@@ -29,11 +30,28 @@ exports.add = function(req,res,next){
 
 exports.findOne = function(req,res,next){
     var id = req.param('id');
+
+    var render = function(article,user){
+        res.render('article/article_detail',{
+            title:article.title,
+            article:article,
+            user:user
+        });
+    };
+
+    var proxy = new EventProxy();
+    proxy.all('get-article','get-user',render);
+
+    proxy.fail(next);
+
+    proxy.once('get-article',function(article){
+        User.findOne({_id:article.userId},function(err,user){
+            proxy.emit('get-user',user);
+        });
+    });
+
+
     Article.findOne({_id:id},function(err,article){
-        if(err){
-            next();
-            return;
-        };
 
         var visitTimes = article[0].visitTimes + 1;
 
@@ -43,13 +61,12 @@ exports.findOne = function(req,res,next){
 
         });
 
-        User.findOne({_id:article[0].userId},function(err,user){
-            res.render('article/article_detail',{
-                title:article[0].title,
-                article:article[0],
-                user:user.name
-            });
-        });
+        article[0].content = markdown.toHTML(article[0].content);
 
+        proxy.emit('get-article',article[0]);
     });
+
+
+
+
 };

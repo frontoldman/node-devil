@@ -1,18 +1,21 @@
 <%- include header %>
 
 <div class="container nav-top-margin">
-    <%if(articleList){%>
-        <ul>
-        <%for(var i = 0;i<articleList.length;i++){%>
-            <li>
-                <h3><a href="/article/<%=articleList[i]._id%>"><%=articleList[i].title%></a></h3>
-                <p><%=articleList[i].content%></p>
-                <p>发表时间：<%=articleList[i].postTime.getTime()%></p>
-            </li>
-        <%}%>
-        </ul>
-    <%}%>
-
+    <div class="row">
+        <div class="col-md-7 center-side">
+            <%if(articleList){%>
+            <ul>
+                <%for(var i = 0;i<articleList.length;i++){%>
+                <li>
+                    <h3><a href="/article/<%=articleList[i]._id%>"><%=articleList[i].title%></a></h3>
+                    <p>发表时间：<%=articleList[i].postTimeString%></p>
+                </li>
+                <%}%>
+            </ul>
+            <%}%>
+        </div>
+        <%- include side_right %>
+    </div>
 </div>
 
 <%- include footer %>
