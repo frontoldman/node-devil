@@ -11,7 +11,8 @@ var ArticleSchema = new Schema({
     userId:{type:String},
     postTime:{type:Date},
     updateTime:{type:Date},
-    visitTimes:{type:Number}
+    visitTimes:{type:Number},
+    replayList:{type:Array}
 });
 
 mongoose.model('Article',ArticleSchema);

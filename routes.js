@@ -50,7 +50,7 @@ module.exports = function(app){
 
     /*
      ==================================================
-     关于用户的路由start
+     关于文章的路由start
      ==================================================
     */
     app.get('/article_add',authChecker,function(req,res,next){
@@ -63,11 +63,11 @@ module.exports = function(app){
 
     app.get('/article/:id',authChecker,article.findOne);
 
-
+    app.post('/add_comment',authChecker,article.addComment);
 
     /*
      ==================================================
-     关于用户的路由end
+     关于文章的路由end
      ==================================================
     */
 

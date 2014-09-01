@@ -13,17 +13,13 @@ exports.add = function(req,res,next){
     var content = req.param('content');
     var userId = req.session.user._id;
 
-
-
     Article.add(title,content,userId,function(err,article){
 
         if(err){
             res.redirect('/article_add');
             return;
         }
-
         res.redirect('/');
-
     });
 
 };
@@ -54,19 +50,49 @@ exports.findOne = function(req,res,next){
     Article.findOne({_id:id},function(err,article){
 
         var visitTimes = article[0].visitTimes + 1;
-
         article[0].visitTimes = visitTimes;
 
-        Article.update({_id:id},{visitTimes:visitTimes},{multi: true},function(err,newArticle){
+        var replayList = article[0].replayList;
 
+
+        Article.update({_id:id},{visitTimes:visitTimes},{multi: true},function(err,newArticle){
+            article[0].content = markdown.toHTML(article[0].content);
+            proxy.emit('get-article',article[0]);
+        });
+    });
+};
+
+exports.addComment = function(req,res,next){
+    var articleId = req.param('article-id');
+    var content = req.param('content');
+
+    Article.findOne({_id:articleId},function(err,article){
+        if(err){
+            next();
+            return;
+        }
+
+        var replayList = article[0].replayList;
+
+        if(!replayList){
+            replayList = [];
+        }
+
+        replayList.push({
+            userId:req.cookies.id,
+            content:content,
+            time:new Date()
+        })
+
+
+        Article.update({_id:articleId},{replayList:replayList},{multi: true},function(err,newArticle){
+            if(err){
+                next();
+                return;
+            }
+            res.redirect('/article/' + articleId);
         });
 
-        article[0].content = markdown.toHTML(article[0].content);
-
-        proxy.emit('get-article',article[0]);
     });
-
-
-
 
 };

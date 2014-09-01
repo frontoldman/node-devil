@@ -9,6 +9,33 @@
                 &nbsp;&nbsp;阅读次数：<%=article.visitTimes%>
             </div>
             <p class="article-content text-info"><%- article.content%></p>
+
+            <ul>
+                <%article.replayList.forEach(function(relay){%>
+                <li>
+                    <div><%=relay.content%></div>
+                    <div><%=relay.time%></div>
+                    <div><%=relay.userId%></div>
+                </li>
+                <%})%>
+            </ul>
+
+            <form method="post" role="form" class="form-horizontal" action="/add_comment">
+                <input type="hidden" name="article-id" value="<%=article._id %>"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">回复内容：</label>
+                    <div class="col-sm-8">
+                        <textarea class="form-control" name="content" rows="10"/></textarea>
+                    </div>
+                    <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-3">
+                        <input type="submit" value="发表回复" class="btn btn-default"/>
+                    </div>
+                </div>
+            </form>
         </div>
         <%- include ../side_right %>
     </div>

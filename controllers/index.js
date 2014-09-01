@@ -17,7 +17,7 @@ exports.index = function(req,res,next){
             article.postTimeString = postTime.getFullYear() + ' - '
                 + postTime.getMonth() + ' - ' + postTime.getDate();
 
-            console.log(article.postTimeString);
+            //console.log(article.postTimeString);
         });
 
         res.render('index',{

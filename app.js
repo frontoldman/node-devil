@@ -21,7 +21,7 @@ app.set('views' , path.join(__dirname,'views'));    //设置视图路径
 app.set('view engine', 'ejs');
 
 //表单参数解析
-app.use(morgan({
+app.use(morgan('default',{
     stream:{
         write:function(line){
             fs.appendFile(config.log_path + '/log.log', line ,function(){});
