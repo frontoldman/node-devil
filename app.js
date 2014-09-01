@@ -8,6 +8,8 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var MongoStore = require('connect-mongo')(session);
+var morgan  = require('morgan');
+var fs = require('fs');
 
 var config = require('./config');
 var routes = require('./routes');
@@ -19,6 +21,13 @@ app.set('views' , path.join(__dirname,'views'));    //设置视图路径
 app.set('view engine', 'ejs');
 
 //表单参数解析
+app.use(morgan({
+    stream:{
+        write:function(line){
+            fs.appendFile(config.log_path + '/log.log', line ,function(){});
+        }
+    }
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:true

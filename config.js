@@ -6,7 +6,8 @@ var config = {
     db:'mongodb://127.0.0.1/dbtest',
     db_name: 'dbtest',
     session_secret:'zr',
-    upload_path:'./uploads'
+    upload_path:'./uploads',
+    log_path:'./logs/'
 };
 
 module.exports = config;
