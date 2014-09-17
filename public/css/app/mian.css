@@ -30,3 +30,10 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.form-back{
+    border:1px solid #ededed;
+    border-radius: 5px;
+}
+.form-back li{
+    list-style: none;
+}

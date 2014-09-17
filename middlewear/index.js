@@ -36,6 +36,7 @@ exports.authChecker = function(req,res,next){
 
 exports.addUser = function(req,res,next){
 
+    //console.log(req.session.user);
     if(req.session.user){
         res.locals.name = req.session.user.name;
         next();
@@ -44,6 +45,7 @@ exports.addUser = function(req,res,next){
 
     var id = req.cookies.id;
 
+    //console.log(id);
     if(!id){
         res.locals.name = null;
         next();

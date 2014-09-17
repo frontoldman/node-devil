@@ -4,22 +4,28 @@
     <div class="row">
         <div class="col-md-7 center-side">
             <h1><%=article.title%></h1>
-            <div class="text-right">作者：<img class="head-pic" src="/<%=user.pic%>"/><%=user.name%> 发表时间：<%=article.postTime.getFullYear()%> -
-                <%=article.postTime.getMonth()+1%> - <%=article.postTime.getDate()%>
+            <div class="text-right">作者：<img class="head-pic" src="/<%=user.pic%>"/>
+                <%=user.name%> 发表时间：<%=article.formatTimer%>
                 &nbsp;&nbsp;阅读次数：<%=article.visitTimes%>
             </div>
             <p class="article-content text-info"><%- article.content%></p>
 
-            <ul>
-                <%article.replayList.forEach(function(relay){%>
-                <li>
-                    <div><%=relay.content%></div>
-                    <div><%=relay.time%></div>
-                    <div><%=relay.userId%></div>
-                </li>
-                <%})%>
-            </ul>
+            <div class="row">
+                <ul class="form-back col-md-10 col-md-offset-2">
+                    <% replayList.forEach(function(relay){%>
+                    <li>
+                        <div class="relay-content text-success"><%=relay.content%></div>
+                        <div class="text-success text-right"><%=relay.formatTimer%></div>
+                        <div class="text-success text-right">
+                            <img class="head-pic" src="/<%=relay.userImg%>"/>
+                            <%=relay.userName%></div>
+                    </li>
+                    <%})%>
+                </ul>
+            </div>
 
+
+            <%if(name){%>
             <form method="post" role="form" class="form-horizontal" action="/add_comment">
                 <input type="hidden" name="article-id" value="<%=article._id %>"/>
                 <div class="form-group">
@@ -36,6 +42,7 @@
                     </div>
                 </div>
             </form>
+            <%}%>
         </div>
         <%- include ../side_right %>
     </div>

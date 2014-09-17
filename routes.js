@@ -11,8 +11,10 @@ var addUser = middlewear.addUser;
 module.exports = function(app){
 
 
+    app.get('/',addUser);
+    app.get('/',index.index);
 
-    app.get('/',authChecker,index.index);
+    //app.get('/',authChecker,index.index);
 
     /*
     ==================================================
@@ -39,9 +41,13 @@ module.exports = function(app){
        });
     });
 
+
+
     app.post('/user_login',user.login);
 
     app.get('/user_login_out',user.loginOut);
+
+
     /*
      ==================================================
      关于用户的路由end
@@ -61,9 +67,15 @@ module.exports = function(app){
 
     app.post('/article_add',authChecker,article.add);
 
-    app.get('/article/:id',authChecker,article.findOne);
+    app.get('/article/:id',addUser,article.findOne);
 
     app.post('/add_comment',authChecker,article.addComment);
+
+    app.get('/get_page_article',article.pageFind);
+
+    app.get('/article_count',article.count);
+
+    app.get('/article_page/:pageIndex',addUser,article.getPage);
 
     /*
      ==================================================
@@ -79,9 +91,12 @@ module.exports = function(app){
         });
     });
 
+
+
     app.use(function(req,res){
-        //res.locals.url = req.baseUrl;
         res.redirect('/404?url='+ req.originalUrl);
     });
+
+
 
 };

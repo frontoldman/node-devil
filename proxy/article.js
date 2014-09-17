@@ -11,7 +11,7 @@ exports.findAll = function(callback){
 };
 
 exports.findOne = function(articleObj,callback){
-    Article.find(articleObj,callback);
+    Article.findOne(articleObj,callback);
 };
 
 exports.add = function(title,content,userId,callback){
@@ -36,4 +36,21 @@ exports.update = function(conditions, update, options, callback){
     }
 
     Article.update(conditions, update, options, callback);
-}
+};
+
+exports.count = function(callback){
+    Article.count({},callback);
+};
+
+//分页查询
+exports.pageFind = function(pageCurrent,pageSize,callback){
+    var skip = (pageCurrent-1)*pageSize;
+    var limit = pageSize;
+
+    Article.where()
+        .skip(skip)
+        .limit(limit)
+        .exec(callback);
+
+
+};
