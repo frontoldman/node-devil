@@ -1,7 +1,7 @@
 /**
  * Created by zhangran on 14-8-16.
  */
-var EventProxy = require('eventProxy');
+var EventProxy = require('eventproxy');
 var markdown = require('markdown').markdown;
 
 var Article = require('../proxy').Article;
