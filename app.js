@@ -52,7 +52,7 @@ app.use(express.static(path.join(__dirname, config.upload_path)));
 
 routes(app);
 
-app.listen(config.port, function () {
+app.listen(config.port, '0.0.0.0' , function () {
     console.log('Your app is listening on %d in %s mode!', config.port, '');
 });
 
