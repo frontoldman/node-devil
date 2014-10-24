@@ -3,33 +3,35 @@
 <div class="container theme-showcase nav-top-margin">
     <div class="row">
         <div class="col-md-7 center-side">
-            <h1><%=article.title%></h1>
-            <div class="text-right">作者：<img class="head-pic" src="/<%=user.pic%>"/>
-                <%=user.name%> 发表时间：<%=article.formatTimer%>
-                &nbsp;&nbsp;阅读次数：<%=article.visitTimes%>
+            <h1><%= article.title %></h1>
+
+            <div class="text-right">作者：<img class="head-pic" src="/<%= user.pic %>"/>
+                <%= user.name %> 发表时间：<%= article.formatTimer %>
+                &nbsp;&nbsp;阅读次数：<%= article.visitTimes %>
             </div>
-            <p class="article-content text-info"><%- article.content%></p>
+            <p class="article-content text-info"><%- article.content %></p>
 
             <div class="row">
                 <ul class="form-back col-md-10 col-md-offset-2">
-                    <% replayList.forEach(function(relay){%>
+                    <% replayList.forEach(function(relay){ %>
                     <li>
-                        <div class="relay-content text-success"><%=relay.content%></div>
-                        <div class="text-success text-right"><%=relay.formatTimer%></div>
+                        <div class="relay-content text-success"><%= relay.content %></div>
+                        <div class="text-success text-right"><%= relay.formatTimer %></div>
                         <div class="text-success text-right">
-                            <img class="head-pic" src="/<%=relay.userImg%>"/>
-                            <%=relay.userName%></div>
+                            <img class="head-pic" src="/<%= relay.userImg %>"/>
+                            <%= relay.userName %></div>
                     </li>
-                    <%})%>
+                    <% }) %>
                 </ul>
             </div>
 
-
-            <%if(name){%>
+            <% if(name){ %>
             <form method="post" role="form" class="form-horizontal" action="/add_comment">
-                <input type="hidden" name="article-id" value="<%=article._id %>"/>
+                <input type="hidden" name="article-id" value="<%= article._id %>"/>
+
                 <div class="form-group">
                     <label class="col-sm-2 control-label">回复内容：</label>
+
                     <div class="col-sm-8">
                         <textarea class="form-control" name="content" rows="10"/></textarea>
                     </div>
@@ -37,12 +39,13 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"></label>
+
                     <div class="col-sm-3">
                         <input type="submit" value="发表回复" class="btn btn-default"/>
                     </div>
                 </div>
             </form>
-            <%}%>
+            <% } %>
         </div>
         <%- include ../side_right %>
     </div>

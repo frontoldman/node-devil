@@ -6,12 +6,12 @@ var models = require('../models');
 var User = models.User;
 
 //查询所有用户
-exports.findAll = function(callback){
+exports.findAll = function (callback) {
     User.find(callback);
 };
 
 //新增一个用户
-exports.newAndSave = function(name,password,pic,email,age,callback){
+exports.newAndSave = function (name, password, pic, email, age, callback) {
 
     var user = new User();
     user.name = name;
@@ -23,10 +23,10 @@ exports.newAndSave = function(name,password,pic,email,age,callback){
 };
 
 
-exports.findOne = function(userObj,callback){
-    User.findOne(userObj,callback);
+exports.findOne = function (userObj, callback) {
+    User.findOne(userObj, callback);
 };
 
-exports.findById = function(id,callback){
-    User.findOne({_id:id},callback);
+exports.findById = function (id, callback) {
+    User.findOne({_id: id}, callback);
 };

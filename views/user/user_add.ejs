@@ -1,66 +1,73 @@
 <%- include ../header %>
 
-    <div class="container theme-showcase nav-top-margin" role="main">
-        <div class="row">
-            <div class="col-md-7 center-side">
-                <form method="post" role="form" class="form-horizontal" action="./user_add" enctype="multipart/form-data">
+<div class="container theme-showcase nav-top-margin" role="main">
+    <div class="row">
+        <div class="col-md-7 center-side">
+            <form method="post" role="form" class="form-horizontal" action="./user_add" enctype="multipart/form-data">
 
-                    <div class="form-group <% if(errMsg.name){ %>  has-error  <%}else{%>  <% } %>">
-                        <label class="col-sm-2 control-label">用户名：</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="name"/>
-                        </div>
-                        <span class="help-block"><%= errMsg.name||'' %></span>
-                    </div>
+                <div class="form-group <% if(errMsg.name){ %>  has-error  <% }else{ %>  <% } %>">
+                    <label class="col-sm-2 control-label">用户名：</label>
 
-                    <div class="form-group <% if(errMsg.password){ %>  has-error  <%}%>">
-                        <label class="col-sm-2 control-label">密 码：</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" name="password"/>
-                        </div>
-                        <span class="help-block"><%= errMsg.password||'' %></span>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="name"/>
                     </div>
+                    <span class="help-block"><%= errMsg.name || '' %></span>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">重复密码：</label>
-                        <div class="col-sm-4">
-                            <input type="password" class="form-control" name="password-repeat"/>
-                        </div>
-                    </div>
+                <div class="form-group <% if(errMsg.password){ %>  has-error  <% } %>">
+                    <label class="col-sm-2 control-label">密 码：</label>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">头像：</label>
-                        <div class="col-sm-4">
-                            <input type="file" class="form-control" name="head-picture"/>
-                        </div>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" name="password"/>
                     </div>
+                    <span class="help-block"><%= errMsg.password || '' %></span>
+                </div>
 
-                    <div class="form-group <% if(errMsg.email){ %>  has-error  <%}%>">
-                        <label class="col-sm-2 control-label">email：</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="email"/>
-                        </div>
-                        <span class="help-block"><%= errMsg.email||'' %></span>
-                    </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">重复密码：</label>
 
-                    <div class="form-group <% if(errMsg.age){ %>  has-error  <%}%>">
-                        <label class="col-sm-2 control-label">年龄：</label>
-                        <div class="col-sm-3">
-                            <input type="text"  class="form-control" name="age"/>
-                        </div>
-                        <span class="help-block"><%= errMsg.age||'' %></span>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" name="password-repeat"/>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label"></label>
-                        <div class="col-sm-3">
-                            <input type="submit" value="注册" class="btn btn-default"/>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">头像：</label>
+
+                    <div class="col-sm-4">
+                        <input type="file" class="form-control" name="head-picture"/>
                     </div>
-                </form>
-            </div>
-            <%- include ../side_right %>
+                </div>
+
+                <div class="form-group <% if(errMsg.email){ %>  has-error  <% } %>">
+                    <label class="col-sm-2 control-label">email：</label>
+
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="email"/>
+                    </div>
+                    <span class="help-block"><%= errMsg.email || '' %></span>
+                </div>
+
+                <div class="form-group <% if(errMsg.age){ %>  has-error  <% } %>">
+                    <label class="col-sm-2 control-label">年龄：</label>
+
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" name="age"/>
+                    </div>
+                    <span class="help-block"><%= errMsg.age || '' %></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"></label>
+
+                    <div class="col-sm-3">
+                        <input type="submit" value="注册" class="btn btn-default"/>
+                    </div>
+                </div>
+            </form>
         </div>
+        <%- include ../side_right %>
     </div>
+</div>
 
 <%- include ../footer %>

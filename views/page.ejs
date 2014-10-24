@@ -5,32 +5,32 @@
     <li><a href="/article_page/1">&laquo;</a></li>
     <% } %>
 
-    <%  var start = 0;
-    if(current<5){
+    <% var start = 0;
+    if (current < 5) {
         start = 0;
-    }else if(current>pageCount-3){
+    } else if (current > pageCount - 3) {
         start = pageCount - 5;
-    }else{
+    } else {
         start = current - 3;
     }
-    var end = Math.min(pageCount,start+5);
+    var end = Math.min(pageCount, start + 5);
     %>
 
-    <%if(start>0){%>
+    <% if(start > 0){ %>
     <li><a>...</a></li>
-    <%}%>
+    <% } %>
 
-    <%for(var i = start;i<end;i++){%>
-    <% if(i+1 == current){ %>
-    <li class="active"><a href="/article_page/<%=i+1%>"><%=i+1%></a></li>
-    <%}else{%>
-    <li><a href="/article_page/<%=i+1%>"><%=i+1%></a></li>
-    <%}%>
-    <%}%>
+    <% for(var i = start;i < end;i++){ %>
+    <% if(i + 1 == current){ %>
+    <li class="active"><a href="/article_page/<%= i+1 %>"><%= i+1 %></a></li>
+    <% }else{ %>
+    <li><a href="/article_page/<%= i+1 %>"><%= i+1 %></a></li>
+    <% } %>
+    <% } %>
 
-    <%if(end<pageCount){%>
+    <% if(end < pageCount){ %>
     <li><a>...</a></li>
-    <%}%>
+    <% } %>
 
     <% if(current == pageCount){ %>
     <li class="disabled"><a href="#">&raquo;</a></li>

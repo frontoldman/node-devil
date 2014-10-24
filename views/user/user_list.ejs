@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-md-7 center-side">
             <ul>
-                <% for(var i = 0;i<userList.length ; i++){ %>
-                    <li>
-                        用户名： <img class="head-pic" src="<%= userList[i].pic %>"/>
-                        <%= userList[i].name %><br/>
-                        email:<%= userList[i].email %><br/>
-                        年龄:<%= userList[i].age %><br/>
+                <% for(var i = 0;i < userList.length ; i++){ %>
+                <li>
+                    用户名： <img class="head-pic" src="<%= userList[i].pic %>"/>
+                    <%= userList[i].name %><br/>
+                    email:<%= userList[i].email %><br/>
+                    年龄:<%= userList[i].age %><br/>
 
-                    </li>
+                </li>
                 <% } %>
             </ul>
         </div>

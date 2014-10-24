@@ -3,8 +3,9 @@
  */
 var config = {
     port:7777,
-    db:'mongodb://127.0.0.1/dbtest',
-    db_name: 'dbtest',
+    //db:'mongodb://127.0.0.1/dbtest',
+    db:'mongodb://zrlakey:694790191p@kahana.mongohq.com:10056/merry_xmas',
+    db_name: 'merry_xmas',
     session_secret:'zr',
     upload_path:'./uploads',
     log_path:'./logs/'
