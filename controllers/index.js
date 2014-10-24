@@ -3,7 +3,7 @@
  */
 var Article = require('../proxy').Article;
 var markdown = require('markdown').markdown;
-var EventProxy = require('eventProxy');
+var EventProxy = require('eventproxy');
 
 exports.index = function (req, res, next) {
 
